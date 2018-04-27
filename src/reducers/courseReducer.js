@@ -1,6 +1,7 @@
 import * as types from "../actions/actionTypes";
+import initialState from "./initialState";
 
-export default function courseReducer(state = [], action) { //if you pass initialState it will override your [] state
+export default function courseReducer(state = initialState.courses, action) { //if you pass initialState it will override your [] state
   switch(action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return action.courses;

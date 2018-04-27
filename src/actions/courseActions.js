@@ -6,7 +6,15 @@ import courseApi from "../api/mockCourseApi";
 // }
 
 export function loadCoursesSuccess(courses) {
-  return {type: types.LOAD_COURSES_SUCCESS, courses: courses}
+  return {type: types.LOAD_COURSES_SUCCESS, courses: courses};
+}
+
+export function updateCourseSuccess(courses) {
+  return {type: types.UPDATE_COURSE_SUCCESS, courses: courses};
+}
+
+export function createCourseSuccess(courses) {
+  return {type: types.CREATE_COURSE_SUCCESS, courses: courses};
 }
 
 export function loadCourses() { //this is a thunk
@@ -16,5 +24,16 @@ export function loadCourses() { //this is a thunk
       }).catch(error => {
         throw(error);
       });
+  };
+}
+
+export function saveCourse(course) {
+  return function(dispatch) {
+    return courseApi.saveCourse(course).then(savedCourse => {
+      course.id ? dispatch(updateCourseSuccess(savedCourse)) :
+        dispatch(createCourseSuccess(savedCourse));
+    }).catch(error => {
+      throw(error);
+    });
   };
 }

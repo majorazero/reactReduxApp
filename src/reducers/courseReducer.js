@@ -11,8 +11,9 @@ export default function courseReducer(state = initialState.courses, action) { //
         Object.assign({}, action.courses)
       ];
     case types.UPDATE_COURSE_SUCCESS:
+      debugger;
       return [
-        ...state.filter(course => course.id !== action.course.id),
+        ...state.filter(course => course.id !== action.courses.id),
         Object.assign({}, action.courses)
       ];
     // case types.CREATE_COURSE:

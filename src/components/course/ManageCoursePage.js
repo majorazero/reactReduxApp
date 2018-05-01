@@ -10,7 +10,8 @@ class ManageCoursePage extends React.Component {
 
     this.state = {
       course: Object.assign({}, this.props.course),
-      errors: {}
+      errors: {},
+      saving: false
     };
 
     this.updateCourseState = this.updateCourseState.bind(this);
@@ -33,7 +34,13 @@ class ManageCoursePage extends React.Component {
 
   saveCourse(event) {
     event.preventDefault();
-    this.props.actions.saveCourse(this.state.course);
+    this.setState({saving: true});//ok to use local state because this doesn't affect the rest of the app
+    this.props.actions.saveCourse(this.state.course)
+      .then(() => this.redirect());
+  }
+
+  redirect() {
+    this.setState({saving: false});
     this.context.router.push("/courses"); //added after included the contextTypes below
   }
 
@@ -45,7 +52,8 @@ class ManageCoursePage extends React.Component {
           onChange={this.updateCourseState}
           onSave={this.saveCourse}
           course={this.state.course}
-          errors={this.state.errors} />
+          errors={this.state.errors}
+          saving={this.state.saving} />
       </div>
     );
   }

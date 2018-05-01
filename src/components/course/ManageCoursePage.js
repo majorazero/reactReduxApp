@@ -37,7 +37,11 @@ class ManageCoursePage extends React.Component {
     event.preventDefault();
     this.setState({saving: true});//ok to use local state because this doesn't affect the rest of the app
     this.props.actions.saveCourse(this.state.course)
-      .then(() => this.redirect());
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
   }
 
   redirect() {

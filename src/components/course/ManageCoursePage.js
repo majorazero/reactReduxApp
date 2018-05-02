@@ -5,7 +5,7 @@ import * as courseActions from "../../actions/courseActions";
 import CourseForm from "./CourseForm";
 import toastr from "toastr";
 
-class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.Component { //changing to export so we can test
   constructor(props, context) {
     super(props, context);
 
@@ -33,8 +33,26 @@ class ManageCoursePage extends React.Component {
     return this.setState({course: course});
   }
 
+  courseFormIsValid() {
+    let formIsValid = true;
+    let errors = {};
+
+    if(this.state.course.title.length < 5) {
+      errors.title = "Title must be at least 5 characters.";
+      formIsValid = false;
+    }
+
+    this.setState({errors: errors});
+    return formIsValid;
+  }
+
   saveCourse(event) {
     event.preventDefault();
+
+    if( !this.courseFormIsValid()) {
+      return;
+    }
+
     this.setState({saving: true});//ok to use local state because this doesn't affect the rest of the app
     this.props.actions.saveCourse(this.state.course)
       .then(() => this.redirect())

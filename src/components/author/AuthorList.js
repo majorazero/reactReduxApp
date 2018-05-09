@@ -1,8 +1,21 @@
 import React from "react";
+import AuthorListRow from "./AuthorListRow";
 
-const AuthorList = () => {
+const AuthorList = ({authors}) => {
   return(
-    <div></div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Authors</th>
+          <th>Number of Courses</th>
+        </tr>
+      </thead>
+      <tbody>
+        {authors.map(author =>
+          <AuthorListRow key={author.id}author={author}/>
+        )}
+      </tbody>
+    </table>
   );
 };
 

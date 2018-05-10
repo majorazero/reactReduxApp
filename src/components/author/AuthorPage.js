@@ -7,6 +7,10 @@ import AuthorList from "./AuthorList";
 class AuthorPage extends React.Component {
   constructor(props,context) {
     super(props, context);
+    this.redirectoAddAuthorPage = this.redirectoAddAuthorPage.bind(this);
+  }
+  redirectoAddAuthorPage() {
+    browserHistory.push("/author");
   }
   render() {
     const {authors} = this.props;
@@ -16,7 +20,8 @@ class AuthorPage extends React.Component {
         <input
           types="submit"
           value="Add Author"
-          className="btn btn-primary"/>
+          className="btn btn-primary"
+          onClick={this.redirectoAddAuthorPage}/>
         <AuthorList authors={authors}/>
       </div>
     );

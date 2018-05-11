@@ -1,7 +1,7 @@
 import React from "react";
 import AuthorListRow from "./AuthorListRow";
 
-const AuthorList = ({authors}) => {
+const AuthorList = ({authors,courses}) => {
   return(
     <table className="table">
       <thead>
@@ -12,7 +12,7 @@ const AuthorList = ({authors}) => {
       </thead>
       <tbody>
         {authors.map(author =>
-          <AuthorListRow key={author.id}author={author}/>
+          <AuthorListRow key={author.id}author={author}courses={courses}/>
         )}
       </tbody>
     </table>

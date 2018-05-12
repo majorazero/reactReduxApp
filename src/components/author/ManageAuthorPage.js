@@ -2,8 +2,7 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 //import {bindActionCreators} from "redux";
 //import * as courseActions from "../../actions/courseActions";
-//import CourseForm from "./CourseForm";
-//import { authorsFormattedForDropdown } from "../../selectors/selectors";
+import AuthorForm from "./AuthorForm";
 //import toastr from "toastr";
 
 class ManageAuthorPage extends React.Component {
@@ -17,14 +16,15 @@ class ManageAuthorPage extends React.Component {
     return(
       <div>
         <h1>Edit Authors</h1>
-        <h2>{this.props.author}</h2>
+        <AuthorForm author={this.props.author} courses={this.props.courses}/>
       </div>
     );
   }
 }
 
 ManageAuthorPage.propTypes = {
-  author: PropTypes.string.isRequired
+  author: PropTypes.string.isRequired,
+  courses: PropTypes.array.isRequired
 };
 
 function getAuthorById(authors, id) {
@@ -33,14 +33,23 @@ function getAuthorById(authors, id) {
   else {return null;}
 }
 
+function getCoursesById(cours, id) {
+  const cour = cours.filter(cour => cour.authorId == id);
+  if(cour) {return cour;}
+  else {return null;}
+}
+
 function mapStateToProps(state, ownProps) {
   let authorId = ownProps.params.id;
   let author = "";
+  let courses = [];
   if (authorId) {
     author = getAuthorById(state.authors,authorId);
+    courses = getCoursesById(state.courses,authorId);
   }
   return {
-    author: author
+    author: author,
+    courses: courses
   };
 }
 

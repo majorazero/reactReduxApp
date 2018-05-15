@@ -4,6 +4,7 @@ import {Link }from "react-router";
 const AuthorListRow = ({author,courses}) => {
   return(
     <tr>
+      <td><Link to={`/author/`+author.id}>Edit</Link></td>
       <td><Link to={`/author/`+author.id}>{author.firstName} {author.lastName}</Link></td>
       <td>{amountOfCourses(author.id,courses)}</td>
     </tr>

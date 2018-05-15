@@ -6,6 +6,7 @@ const AuthorList = ({authors,courses}) => {
     <table className="table">
       <thead>
         <tr>
+          <th>&nbsp;</th>
           <th>Authors</th>
           <th>Number of Courses</th>
         </tr>

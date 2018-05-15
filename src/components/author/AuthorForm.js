@@ -1,11 +1,22 @@
 import React, {PropTypes} from "react";
 import AuthorFormList from "./AuthorFormList";
+import TextInput from "../common/TextInput";
 
-const AuthorForm = ({author,courses}) => {
+const AuthorForm = ({author,authorId,courses}) => {
   return(
     <div>
-      <h2>{author}</h2>
-      <AuthorFormList courses={courses} />
+      <TextInput
+        name="Author"
+        label="Author"
+        value={author}/>
+        <TextInput
+          name="AuthorId"
+          label="AuthorId"
+          value={authorId}/>
+          <input
+            type="submit"
+            value={"Save"}
+            className="btn btn-primary"/>
     </div>
   );
 };

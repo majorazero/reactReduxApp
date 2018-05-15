@@ -16,7 +16,7 @@ class ManageAuthorPage extends React.Component {
     return(
       <div>
         <h1>Edit Authors</h1>
-        <AuthorForm author={this.props.author} courses={this.props.courses}/>
+        <AuthorForm author={this.props.author} authorId={this.props.authorId} courses={this.props.courses}/>
       </div>
     );
   }
@@ -48,6 +48,7 @@ function mapStateToProps(state, ownProps) {
     courses = getCoursesById(state.courses,authorId);
   }
   return {
+    authorId: ownProps.params.id,
     author: author,
     courses: courses
   };

@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
-import AuthorFormList from "./AuthorFormList";
+import AuthorDisplayList from "./AuthorDisplayList";
 
 class AuthorDisplay extends React.Component {
   constructor(props, context) {
@@ -13,7 +13,7 @@ class AuthorDisplay extends React.Component {
     return(
       <div>
         <h1>{this.props.author}</h1>
-        <AuthorFormList courses={this.props.courses} />
+        <AuthorDisplayList courses={this.props.courses} />
       </div>
     );
   }

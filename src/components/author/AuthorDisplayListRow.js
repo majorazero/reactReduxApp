@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
 
-const CourseListRow = ({course}) => {
+const AuthorDisplayListRow = ({course}) => {
   return(
     <tr>
       <td><a href={course.watchHref} target="_blank">Watch</a></td>
@@ -11,8 +11,8 @@ const CourseListRow = ({course}) => {
   );
 };
 
-CourseListRow.propTypes = {
+AuthorDisplayListRow.propTypes = {
   course: PropTypes.object.isRequired
 };
 
-export default CourseListRow;
+export default AuthorDisplayListRow;

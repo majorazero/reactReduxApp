@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
-import AuthorFormListRow from "./AuthorFormListRow";
+import AuthorDisplayListRow from "./AuthorDisplayListRow";
 
-const AuthorFormList = ({courses}) => {
+const AuthorDisplayList = ({courses}) => {
   return (
     <table className="table">
       <thead>
@@ -14,15 +14,15 @@ const AuthorFormList = ({courses}) => {
       </thead>
       <tbody>
         {courses.map(course =>
-          <AuthorFormListRow key={course.id} course={course}/>
+          <AuthorDisplayListRow key={course.id} course={course}/>
         )}
       </tbody>
     </table>
   );
 };
 
-AuthorFormList.propTypes = {
+AuthorDisplayList.propTypes = {
   courses: PropTypes.array.isRequired
 };
 
-export default AuthorFormList;
+export default AuthorDisplayList;

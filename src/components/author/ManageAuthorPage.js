@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-//import * as courseActions from "../../actions/courseActions";
+import * as authorActions from "../../actions/authorActions";
 import AuthorForm from "./AuthorForm";
 //import toastr from "toastr";
 
@@ -12,6 +12,13 @@ class ManageAuthorPage extends React.Component {
       author: Object.assign({},this.props.author)
     };
   }
+  //
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.author.id != nextProps.author.id) {
+  //     //neccesary (remember your weather app?)
+  //     this.setState({course: Object.assign({}, nextProps.author)});
+  //   }
+  // }
 
   updateAuthorState(event) {
     const field = event.target.name;
@@ -70,10 +77,10 @@ ManageAuthorPage.propTypes = {
   authorId: PropTypes.string.isRequired
 };
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(courseActions, dispatch)
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(authorActions, dispatch)
+  };
+}
 
-export default connect(mapStateToProps)(ManageAuthorPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageAuthorPage);

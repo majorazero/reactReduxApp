@@ -11,6 +11,7 @@ class ManageAuthorPage extends React.Component {
     this.state = {
       author: Object.assign({},this.props.author)
     };
+    this.updateAuthorState = this.updateAuthorState.bind(this);
   }
   //
   // componentWillReceiveProps(nextProps) {
@@ -24,7 +25,8 @@ class ManageAuthorPage extends React.Component {
     const field = event.target.name;
     let author = Object.assign({}, this.state.author);
     author[field] = event.target.value;
-    return this.setState({author: author});
+    //debugger;
+    return this.setState({author: this.state.author.concat(author)});
   }
   render() {
     return(

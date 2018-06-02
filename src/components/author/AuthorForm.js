@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import TextInput from "../common/TextInput";
 
-const AuthorForm = ({author,authorId,courses,onChange}) => {
+const AuthorForm = ({author,authorId,courses,onChange,onSave}) => {
   return(
     <div>
       <TextInput
@@ -17,7 +17,8 @@ const AuthorForm = ({author,authorId,courses,onChange}) => {
       <input
         type="submit"
         value={"Save"}
-        className="btn btn-primary"/>
+        className="btn btn-primary"
+        onClick={onSave}/>
     </div>
   );
 };

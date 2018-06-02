@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as authorActions from "../../actions/authorActions";
 import AuthorForm from "./AuthorForm";
-//import toastr from "toastr";
+import toastr from "toastr";
 
 class ManageAuthorPage extends React.Component {
   constructor(props, context) {
@@ -12,14 +12,8 @@ class ManageAuthorPage extends React.Component {
       author: Object.assign({},this.props.author)
     };
     this.updateAuthorState = this.updateAuthorState.bind(this);
+    this.saveAuthor = this.saveAuthor.bind(this);
   }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.author.id != nextProps.author.id) {
-  //     //neccesary (remember your weather app?)
-  //     this.setState({course: Object.assign({}, nextProps.author)});
-  //   }
-  // }
 
   updateAuthorState(event) {
     const field = event.target.name;
@@ -28,6 +22,23 @@ class ManageAuthorPage extends React.Component {
     //debugger;
     return this.setState({author: this.state.author.concat(author)});
   }
+
+  saveAuthor(event) {
+    event.preventDefault();
+    //
+    // if( !this.courseFormIsValid()) {
+    //   return;
+    // }
+    // this.setState({saving: true});//ok to use local state because this doesn't affect the rest of the app
+    debugger;
+    this.props.actions.saveAuthor(this.state.author)
+      // .then(() => this.redirect())
+       .catch(error => {
+        toastr.error(error);
+      //   this.setState({saving: false});
+       });
+  }
+
   render() {
     return(
       <div>
@@ -35,7 +46,8 @@ class ManageAuthorPage extends React.Component {
         <AuthorForm author={this.props.author}
           authorId={this.props.authorId}
           courses={this.props.courses}
-          onChange={this.updateAuthorState}/>
+          onChange={this.updateAuthorState}
+          onSave={this.saveAuthor}/>
       </div>
     );
   }

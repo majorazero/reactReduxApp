@@ -5,8 +5,13 @@ const AuthorForm = ({author,authorId,courses,onChange,onSave}) => {
   return(
     <div>
       <TextInput
-        name="Author"
-        label="Author"
+        name="First Name"
+        label="First Name"
+        value={author}
+        onChange={onChange}/>
+      <TextInput
+        name="Last Name"
+        label="Last Name"
         value={author}
         onChange={onChange}/>
       <TextInput

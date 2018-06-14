@@ -30,7 +30,6 @@ class ManageAuthorPage extends React.Component {
     //   return;
     // }
     // this.setState({saving: true});//ok to use local state because this doesn't affect the rest of the app
-    debugger;
     this.props.actions.saveAuthor(this.state.author)
       // .then(() => this.redirect())
        .catch(error => {

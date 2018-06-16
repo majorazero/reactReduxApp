@@ -9,7 +9,8 @@ class ManageAuthorPage extends React.Component {
   constructor(props, context) {
     super(props,context);
     this.state = {
-      author: Object.assign({},this.props.author)
+      authorFirstName: Object.assign({},this.props.authorFirstName),
+      authorLastName: Object.assign({},this.props.authorLastName)
     };
     this.updateAuthorState = this.updateAuthorState.bind(this);
     this.saveAuthor = this.saveAuthor.bind(this);
@@ -42,7 +43,8 @@ class ManageAuthorPage extends React.Component {
     return(
       <div>
         <h1>Edit Authors</h1>
-        <AuthorForm author={this.props.author}
+        <AuthorForm authorFirstName={this.props.authorFirstName}
+          authorLastName={this.props.authorLastName}
           authorId={this.props.authorId}
           courses={this.props.courses}
           onChange={this.updateAuthorState}
@@ -58,10 +60,15 @@ ManageAuthorPage.propTypes = {
 };
 
 
-
-function getAuthorById(authors, id) {
+//firstLastOrder determines which name it returns
+function getAuthorById(authors, id, firstLastOrder) {
   const author = authors.filter(author => author.id == id);
-  if (author) { return author[0].firstName+ " "+author[0].lastName;} //filter returns an array so you have to call it like this
+  if (author) {
+    if (firstLastOrder == 1){
+      return author[0].firstName;}
+    else if (firstLastOrder == 2) {
+      return author[0].lastName;}
+  } //filter returns an array so you have to call it like this
   else {return null;}
 }
 
@@ -73,15 +80,18 @@ function getCoursesById(cours, id) {
 
 function mapStateToProps(state, ownProps) {
   let authorId = ownProps.params.id;
-  let author = "";
+  let authorFirstName = "";
+  let authorLastName = "";
   let courses = [];
   if (authorId) {
-    author = getAuthorById(state.authors,authorId);
+    authorFirstName = getAuthorById(state.authors,authorId, 1);
+    authorLastName = getAuthorById(state.authors,authorId, 2);
     courses = getCoursesById(state.courses,authorId);
   }
   return {
     authorId: ownProps.params.id,
-    author: author,
+    authorFirstName: authorFirstName,
+    authorLastName: authorLastName,
     courses: courses
   };
 }

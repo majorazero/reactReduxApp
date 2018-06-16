@@ -1,18 +1,18 @@
 import React, {PropTypes} from "react";
 import TextInput from "../common/TextInput";
 
-const AuthorForm = ({author,authorId,courses,onChange,onSave}) => {
+const AuthorForm = ({authorFirstName,authorLastName,authorId,courses,onChange,onSave}) => {
   return(
     <div>
       <TextInput
         name="First Name"
         label="First Name"
-        value={author}
+        value={authorFirstName}
         onChange={onChange}/>
       <TextInput
         name="Last Name"
         label="Last Name"
-        value={author}
+        value={authorLastName}
         onChange={onChange}/>
       <TextInput
         name="AuthorId"
